@@ -5,7 +5,7 @@ app = create_app('development')
 
 if __name__ == '__main__':
     # Lancer le serveur Flask
-    # host='0.0.0.0' permet d'accéder depuis d'autres appareils (ex: mobile)
+    # host='0.0.0.0' permet d'accéder depuis d'autres appareils (exemple: mobile)
     # port=5000 est le port par défaut de Flask
     # debug=True affiche les erreurs détaillées
     app.run(

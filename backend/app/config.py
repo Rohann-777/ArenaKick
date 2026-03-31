@@ -17,7 +17,7 @@ class Config:
     JWT_ACCESS_TOKEN_EXPIRES = 86400
 
 class DevelopmentConfig(Config):
-    # Mode développement — affiche les erreurs détaillées
+    # Mode développement : affiche les erreurs détaillées
     DEBUG = True
 
 class ProductionConfig(Config):
