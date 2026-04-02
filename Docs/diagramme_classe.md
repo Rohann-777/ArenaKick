@@ -26,7 +26,7 @@ numeroMaillot, poste
 **Méthodes** : getStatistiques(), updateProfil()
 
 ### Match
-**Attributs** : idMatch, dateMatch, terrain,
+**Attributs** : idMatch, dateMatch, heureMatch, terrain,
 scoreEquipeA, scoreEquipeB, statut
 **Méthodes** : creerMatch(), saisirResultat(),
 updateStatut(), getEquipes(), getProgramme()
