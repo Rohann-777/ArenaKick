@@ -48,8 +48,9 @@ getNotifications()
 - Tournoi "1" --> "2..*" Equipe : contient
 - Equipe "1" --> "1..*" Joueur : possede
 - Tournoi "1" --> "1..*" Match : programme
-- Match "2" --> "1" Equipe : implique
+- Equipe "1" --> "0..*" Match : joueA / joueB
 - Equipe "1" --> "1" Classement : aClassement
+- Tournoi "1" --> "0..*" Classement : aClassement
 - Utilisateur "1" --> "0..*" Notification : recoit
 - Match "1" --> "0..*" Notification : declencheNotif
 
