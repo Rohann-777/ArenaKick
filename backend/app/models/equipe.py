@@ -8,6 +8,7 @@ class Equipe(db.Model):
     nom       = db.Column(db.String(100), nullable=False)
     couleur   = db.Column(db.String(50), nullable=True)
     logo      = db.Column(db.String(255), nullable=True)
+    nomCoach = db.Column(db.String(150), nullable=True)
 
     # Clé étrangère
     idTournoi = db.Column(
