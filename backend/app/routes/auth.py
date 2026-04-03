@@ -82,11 +82,7 @@ def login():
         return jsonify({'erreur': 'Email ou mot de passe incorrect'}), 401
 
     # 4. Générer le token JWT
-    token = create_access_token(identity={
-        'id': utilisateur.idUtilisateur,
-        'email': utilisateur.email,
-        'type': utilisateur.typeUtilisateur
-    })
+    token = create_access_token(identity=str(utilisateur.idUtilisateur))
 
     return jsonify({
         'message': 'Connexion réussie !',
@@ -109,10 +105,10 @@ def login():
 @jwt_required()
 def profil():
     # Récupérer l'identité depuis le token JWT
-    identite = get_jwt_identity()
+    idUtilisateur = get_jwt_identity()
 
     # Chercher l'utilisateur dans la BDD
-    utilisateur = Utilisateur.query.get(identite['id'])
+    utilisateur = Utilisateur.query.get(int(idUtilisateur))
 
     if not utilisateur:
         return jsonify({'erreur': 'Utilisateur introuvable'}), 404
