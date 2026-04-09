@@ -25,10 +25,14 @@ def create_app(config_name='default'):
     from .routes.tournois import tournois_bp
     from .routes.equipes import equipes_bp
     from .routes.matchs import matchs_bp
+    from .routes.joueurs import joueurs_bp
+    from .routes.notifications import notifications_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(tournois_bp, url_prefix='/api/tournois')
     app.register_blueprint(equipes_bp, url_prefix='/api/equipes')
     app.register_blueprint(matchs_bp, url_prefix='/api/matchs')
+    app.register_blueprint(joueurs_bp, url_prefix='/api/joueurs')
+    app.register_blueprint(notifications_bp, url_prefix='/api/notifications')
 
     return app

@@ -1,4 +1,5 @@
 # Schéma de la Base de Données — ArenaKick
+> **Base de données** : MySQL via WampServer + phpMyAdmin
 
 ## Entités et attributs
 

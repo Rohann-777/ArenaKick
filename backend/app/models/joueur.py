@@ -7,6 +7,7 @@ class Joueur(db.Model):
     idJoueur      = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nom           = db.Column(db.String(100), nullable=False)
     prenom        = db.Column(db.String(100), nullable=False)
+    age           = db.Column(db.Integer, nullable=True)
     numeroMaillot = db.Column(db.Integer, nullable=True)
     poste         = db.Column(
         db.Enum('gardien', 'defenseur', 'milieu', 'attaquant'),
