@@ -615,11 +615,11 @@
                 badge.textContent = tournoi.statut === 'inscription' ? 'Inscription' :
                                     tournoi.statut === 'en_cours' ? 'En cours' : 'Terminé';
 
-                // Cacher le bouton ajout équipe si tournoi en cours
-                if (tournoi.statut !== 'inscription') {
+                // Cacher le bouton ajout équipe si tournoi en cours OU si pas organisateur
+                if (tournoi.statut !== 'inscription' ||
+                    (utilisateur.type !== 'organisateur' && utilisateur.type !== 'admin')) {
                     document.getElementById('btnAjouterEquipe').style.display = 'none';
                 }
-
             } catch (error) {
                 console.error('Erreur chargement tournoi', error);
             }

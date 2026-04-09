@@ -435,6 +435,11 @@
         // ============================================================
         // Charger les tournois
         // ============================================================
+        // Cacher le bouton "Nouveau tournoi" si pas organisateur/admin
+        if (utilisateur.type !== 'organisateur' && utilisateur.type !== 'admin') {
+            document.querySelector('.btn-primary').style.display = 'none';
+        }
+        
         async function chargerTournois() {
             try {
                 const response = await fetch(`${API_URL}/tournois`);
