@@ -389,8 +389,8 @@
     <nav class="navbar">
         <h1 onclick="window.location.href='dashboard.html'">⚽ ArenaKick</h1>
         <div class="navbar-right">
-            <button class="btn-back" onclick="window.location.href='dashboard.html'">
-                ← Retour au dashboard
+            <button class="btn-back" id="btnRetour">
+                ← Retour
             </button>
         </div>
     </nav>
@@ -590,6 +590,15 @@
 
         // Récupérer l'ID du tournoi depuis l'URL
         const params = new URLSearchParams(window.location.search);
+        // Adapter le bouton retour selon si connecté ou non
+        const btnRetour = document.getElementById('btnRetour');
+        if (token) {
+            btnRetour.textContent = '← Retour au dashboard';
+            btnRetour.onclick = () => window.location.href = 'dashboard.html';
+        } else {
+            btnRetour.textContent = '← Retour à l\'accueil';
+            btnRetour.onclick = () => window.location.href = '../index.html';
+        }
         const idTournoi = params.get('id');
 
         if (!idTournoi) window.location.href = 'dashboard.html';
