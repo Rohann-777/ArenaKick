@@ -1,0 +1,11 @@
+[
+  {
+    "idTournoi": 1,
+    "nom": "Tournoi Malagasy 2035",
+    "dateDebut": "2035-06-01",
+    "dateFin": "2035-07-01",
+    "format": "poules",
+    "nombreEquipes": 8,
+    "statut": "termine"
+  }
+]

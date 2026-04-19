@@ -210,3 +210,18 @@ __marimo__/
 ~$*
 *.tmp
 Thumbs.db
+
+# Environnement virtuel
+src/backend/venv/
+
+# Fichiers Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Fichiers temporaires Office
+~$*
+*.tmp
+
+# Variables d'environnement
+.env

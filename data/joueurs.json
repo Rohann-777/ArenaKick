@@ -1,0 +1,794 @@
+[
+  {
+    "idJoueur": 1,
+    "nom": "Rado",
+    "prenom": "Ny Aina",
+    "age": 33,
+    "numeroMaillot": 1,
+    "poste": "defenseur",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 2,
+    "nom": "Mara",
+    "prenom": "Andry",
+    "age": 19,
+    "numeroMaillot": 2,
+    "poste": "defenseur",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 3,
+    "nom": "Rakoto",
+    "prenom": "Mamy",
+    "age": 28,
+    "numeroMaillot": 3,
+    "poste": "attaquant",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 4,
+    "nom": "Mara",
+    "prenom": "Andry",
+    "age": 30,
+    "numeroMaillot": 4,
+    "poste": "defenseur",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 5,
+    "nom": "Tafita",
+    "prenom": "Hery",
+    "age": 20,
+    "numeroMaillot": 5,
+    "poste": "attaquant",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 6,
+    "nom": "Rakoto",
+    "prenom": "Niry",
+    "age": 23,
+    "numeroMaillot": 6,
+    "poste": "defenseur",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 7,
+    "nom": "Rakoto",
+    "prenom": "Fidy",
+    "age": 29,
+    "numeroMaillot": 7,
+    "poste": "gardien",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 8,
+    "nom": "Rado",
+    "prenom": "Niry",
+    "age": 33,
+    "numeroMaillot": 8,
+    "poste": "milieu",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 9,
+    "nom": "Rabe",
+    "prenom": "Hery",
+    "age": 26,
+    "numeroMaillot": 9,
+    "poste": "attaquant",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 10,
+    "nom": "Ravo",
+    "prenom": "Niry",
+    "age": 31,
+    "numeroMaillot": 10,
+    "poste": "attaquant",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 11,
+    "nom": "Ndriana",
+    "prenom": "Hasina",
+    "age": 20,
+    "numeroMaillot": 11,
+    "poste": "attaquant",
+    "idEquipe": 1
+  },
+  {
+    "idJoueur": 12,
+    "nom": "Tsiry",
+    "prenom": "Mamy",
+    "age": 22,
+    "numeroMaillot": 1,
+    "poste": "gardien",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 13,
+    "nom": "Vola",
+    "prenom": "Tojo",
+    "age": 29,
+    "numeroMaillot": 2,
+    "poste": "attaquant",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 14,
+    "nom": "Tafita",
+    "prenom": "Fidy",
+    "age": 21,
+    "numeroMaillot": 3,
+    "poste": "defenseur",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 15,
+    "nom": "Rabe",
+    "prenom": "Hery",
+    "age": 23,
+    "numeroMaillot": 4,
+    "poste": "defenseur",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 16,
+    "nom": "Zara",
+    "prenom": "Tojo",
+    "age": 20,
+    "numeroMaillot": 5,
+    "poste": "gardien",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 17,
+    "nom": "Vola",
+    "prenom": "Andry",
+    "age": 19,
+    "numeroMaillot": 6,
+    "poste": "attaquant",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 18,
+    "nom": "Mara",
+    "prenom": "Niry",
+    "age": 26,
+    "numeroMaillot": 7,
+    "poste": "milieu",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 19,
+    "nom": "Rabe",
+    "prenom": "Niry",
+    "age": 27,
+    "numeroMaillot": 8,
+    "poste": "attaquant",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 20,
+    "nom": "Rabe",
+    "prenom": "Tiana",
+    "age": 25,
+    "numeroMaillot": 9,
+    "poste": "gardien",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 21,
+    "nom": "Tafita",
+    "prenom": "Tiana",
+    "age": 21,
+    "numeroMaillot": 10,
+    "poste": "milieu",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 22,
+    "nom": "Tsiry",
+    "prenom": "Tojo",
+    "age": 19,
+    "numeroMaillot": 11,
+    "poste": "milieu",
+    "idEquipe": 2
+  },
+  {
+    "idJoueur": 23,
+    "nom": "Ndriana",
+    "prenom": "Andry",
+    "age": 33,
+    "numeroMaillot": 1,
+    "poste": "gardien",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 24,
+    "nom": "Tsiry",
+    "prenom": "Andry",
+    "age": 23,
+    "numeroMaillot": 2,
+    "poste": "gardien",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 25,
+    "nom": "Rabe",
+    "prenom": "Hery",
+    "age": 32,
+    "numeroMaillot": 3,
+    "poste": "gardien",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 26,
+    "nom": "Rakoto",
+    "prenom": "Mamy",
+    "age": 24,
+    "numeroMaillot": 4,
+    "poste": "attaquant",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 27,
+    "nom": "Mara",
+    "prenom": "Tojo",
+    "age": 34,
+    "numeroMaillot": 5,
+    "poste": "defenseur",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 28,
+    "nom": "Tsiry",
+    "prenom": "Tahiry",
+    "age": 30,
+    "numeroMaillot": 6,
+    "poste": "milieu",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 29,
+    "nom": "Rakoto",
+    "prenom": "Fidy",
+    "age": 30,
+    "numeroMaillot": 7,
+    "poste": "milieu",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 30,
+    "nom": "Ravo",
+    "prenom": "Niry",
+    "age": 24,
+    "numeroMaillot": 8,
+    "poste": "gardien",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 31,
+    "nom": "Vola",
+    "prenom": "Fidy",
+    "age": 30,
+    "numeroMaillot": 9,
+    "poste": "defenseur",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 32,
+    "nom": "Rado",
+    "prenom": "Niry",
+    "age": 28,
+    "numeroMaillot": 10,
+    "poste": "attaquant",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 33,
+    "nom": "Rabe",
+    "prenom": "Tojo",
+    "age": 18,
+    "numeroMaillot": 11,
+    "poste": "defenseur",
+    "idEquipe": 3
+  },
+  {
+    "idJoueur": 34,
+    "nom": "Tafita",
+    "prenom": "Fidy",
+    "age": 22,
+    "numeroMaillot": 1,
+    "poste": "attaquant",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 35,
+    "nom": "Mara",
+    "prenom": "Hasina",
+    "age": 33,
+    "numeroMaillot": 2,
+    "poste": "defenseur",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 36,
+    "nom": "Rakoto",
+    "prenom": "Tahiry",
+    "age": 20,
+    "numeroMaillot": 3,
+    "poste": "milieu",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 37,
+    "nom": "Vola",
+    "prenom": "Tojo",
+    "age": 21,
+    "numeroMaillot": 4,
+    "poste": "milieu",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 38,
+    "nom": "Ndriana",
+    "prenom": "Mamy",
+    "age": 31,
+    "numeroMaillot": 5,
+    "poste": "defenseur",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 39,
+    "nom": "Ndriana",
+    "prenom": "Hasina",
+    "age": 20,
+    "numeroMaillot": 6,
+    "poste": "gardien",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 40,
+    "nom": "Rado",
+    "prenom": "Tahiry",
+    "age": 23,
+    "numeroMaillot": 7,
+    "poste": "attaquant",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 41,
+    "nom": "Rado",
+    "prenom": "Mamy",
+    "age": 24,
+    "numeroMaillot": 8,
+    "poste": "milieu",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 42,
+    "nom": "Ndriana",
+    "prenom": "Hasina",
+    "age": 34,
+    "numeroMaillot": 9,
+    "poste": "gardien",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 43,
+    "nom": "Tafita",
+    "prenom": "Tahiry",
+    "age": 19,
+    "numeroMaillot": 10,
+    "poste": "attaquant",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 44,
+    "nom": "Rabe",
+    "prenom": "Fidy",
+    "age": 26,
+    "numeroMaillot": 11,
+    "poste": "attaquant",
+    "idEquipe": 4
+  },
+  {
+    "idJoueur": 45,
+    "nom": "Rabe",
+    "prenom": "Hery",
+    "age": 30,
+    "numeroMaillot": 1,
+    "poste": "attaquant",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 46,
+    "nom": "Tafita",
+    "prenom": "Andry",
+    "age": 32,
+    "numeroMaillot": 2,
+    "poste": "defenseur",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 47,
+    "nom": "Ravo",
+    "prenom": "Niry",
+    "age": 29,
+    "numeroMaillot": 3,
+    "poste": "defenseur",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 48,
+    "nom": "Ravo",
+    "prenom": "Andry",
+    "age": 21,
+    "numeroMaillot": 4,
+    "poste": "defenseur",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 49,
+    "nom": "Rakoto",
+    "prenom": "Tahiry",
+    "age": 28,
+    "numeroMaillot": 5,
+    "poste": "attaquant",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 50,
+    "nom": "Tafita",
+    "prenom": "Hasina",
+    "age": 24,
+    "numeroMaillot": 6,
+    "poste": "gardien",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 51,
+    "nom": "Vola",
+    "prenom": "Tiana",
+    "age": 30,
+    "numeroMaillot": 7,
+    "poste": "milieu",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 52,
+    "nom": "Tsiry",
+    "prenom": "Tojo",
+    "age": 29,
+    "numeroMaillot": 8,
+    "poste": "defenseur",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 53,
+    "nom": "Vola",
+    "prenom": "Niry",
+    "age": 29,
+    "numeroMaillot": 9,
+    "poste": "milieu",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 54,
+    "nom": "Vola",
+    "prenom": "Niry",
+    "age": 22,
+    "numeroMaillot": 10,
+    "poste": "attaquant",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 55,
+    "nom": "Rakoto",
+    "prenom": "Niry",
+    "age": 32,
+    "numeroMaillot": 11,
+    "poste": "milieu",
+    "idEquipe": 5
+  },
+  {
+    "idJoueur": 56,
+    "nom": "Zara",
+    "prenom": "Tojo",
+    "age": 18,
+    "numeroMaillot": 1,
+    "poste": "defenseur",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 57,
+    "nom": "Tsiry",
+    "prenom": "Tojo",
+    "age": 34,
+    "numeroMaillot": 2,
+    "poste": "attaquant",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 58,
+    "nom": "Zara",
+    "prenom": "Tahiry",
+    "age": 20,
+    "numeroMaillot": 3,
+    "poste": "attaquant",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 59,
+    "nom": "Vola",
+    "prenom": "Niry",
+    "age": 31,
+    "numeroMaillot": 4,
+    "poste": "defenseur",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 60,
+    "nom": "Vola",
+    "prenom": "Mamy",
+    "age": 21,
+    "numeroMaillot": 5,
+    "poste": "gardien",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 61,
+    "nom": "Rado",
+    "prenom": "Andry",
+    "age": 35,
+    "numeroMaillot": 6,
+    "poste": "gardien",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 62,
+    "nom": "Ndriana",
+    "prenom": "Tojo",
+    "age": 34,
+    "numeroMaillot": 7,
+    "poste": "attaquant",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 63,
+    "nom": "Mara",
+    "prenom": "Hery",
+    "age": 27,
+    "numeroMaillot": 8,
+    "poste": "defenseur",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 64,
+    "nom": "Rabe",
+    "prenom": "Tojo",
+    "age": 29,
+    "numeroMaillot": 9,
+    "poste": "milieu",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 65,
+    "nom": "Vola",
+    "prenom": "Ny Aina",
+    "age": 27,
+    "numeroMaillot": 10,
+    "poste": "defenseur",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 66,
+    "nom": "Tafita",
+    "prenom": "Fidy",
+    "age": 35,
+    "numeroMaillot": 11,
+    "poste": "defenseur",
+    "idEquipe": 6
+  },
+  {
+    "idJoueur": 67,
+    "nom": "Rakoto",
+    "prenom": "Andry",
+    "age": 25,
+    "numeroMaillot": 1,
+    "poste": "defenseur",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 68,
+    "nom": "Rabe",
+    "prenom": "Andry",
+    "age": 28,
+    "numeroMaillot": 2,
+    "poste": "attaquant",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 69,
+    "nom": "Vola",
+    "prenom": "Hasina",
+    "age": 34,
+    "numeroMaillot": 3,
+    "poste": "gardien",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 70,
+    "nom": "Rakoto",
+    "prenom": "Hasina",
+    "age": 23,
+    "numeroMaillot": 4,
+    "poste": "attaquant",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 71,
+    "nom": "Tsiry",
+    "prenom": "Tahiry",
+    "age": 29,
+    "numeroMaillot": 5,
+    "poste": "defenseur",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 72,
+    "nom": "Ndriana",
+    "prenom": "Hery",
+    "age": 35,
+    "numeroMaillot": 6,
+    "poste": "attaquant",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 73,
+    "nom": "Vola",
+    "prenom": "Andry",
+    "age": 27,
+    "numeroMaillot": 7,
+    "poste": "milieu",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 74,
+    "nom": "Ndriana",
+    "prenom": "Hery",
+    "age": 19,
+    "numeroMaillot": 8,
+    "poste": "gardien",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 75,
+    "nom": "Rabe",
+    "prenom": "Andry",
+    "age": 28,
+    "numeroMaillot": 9,
+    "poste": "attaquant",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 76,
+    "nom": "Mara",
+    "prenom": "Hery",
+    "age": 26,
+    "numeroMaillot": 10,
+    "poste": "defenseur",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 77,
+    "nom": "Vola",
+    "prenom": "Hery",
+    "age": 19,
+    "numeroMaillot": 11,
+    "poste": "defenseur",
+    "idEquipe": 7
+  },
+  {
+    "idJoueur": 78,
+    "nom": "Mara",
+    "prenom": "Niry",
+    "age": 21,
+    "numeroMaillot": 1,
+    "poste": "milieu",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 79,
+    "nom": "Zara",
+    "prenom": "Tiana",
+    "age": 19,
+    "numeroMaillot": 2,
+    "poste": "defenseur",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 80,
+    "nom": "Ndriana",
+    "prenom": "Hery",
+    "age": 26,
+    "numeroMaillot": 3,
+    "poste": "defenseur",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 81,
+    "nom": "Rabe",
+    "prenom": "Tojo",
+    "age": 22,
+    "numeroMaillot": 4,
+    "poste": "milieu",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 82,
+    "nom": "Mara",
+    "prenom": "Tojo",
+    "age": 26,
+    "numeroMaillot": 5,
+    "poste": "defenseur",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 83,
+    "nom": "Tafita",
+    "prenom": "Fidy",
+    "age": 27,
+    "numeroMaillot": 6,
+    "poste": "gardien",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 84,
+    "nom": "Rabe",
+    "prenom": "Ny Aina",
+    "age": 21,
+    "numeroMaillot": 7,
+    "poste": "defenseur",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 85,
+    "nom": "Rado",
+    "prenom": "Ny Aina",
+    "age": 28,
+    "numeroMaillot": 8,
+    "poste": "attaquant",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 86,
+    "nom": "Rabe",
+    "prenom": "Mamy",
+    "age": 20,
+    "numeroMaillot": 9,
+    "poste": "milieu",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 87,
+    "nom": "Rado",
+    "prenom": "Niry",
+    "age": 27,
+    "numeroMaillot": 10,
+    "poste": "milieu",
+    "idEquipe": 8
+  },
+  {
+    "idJoueur": 88,
+    "nom": "Tafita",
+    "prenom": "Ny Aina",
+    "age": 31,
+    "numeroMaillot": 11,
+    "poste": "milieu",
+    "idEquipe": 8
+  }
+]

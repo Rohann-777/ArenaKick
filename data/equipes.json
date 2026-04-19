@@ -1,0 +1,58 @@
+[
+  {
+    "idEquipe": 1,
+    "idTournoi": 1,
+    "nom": "Barea de Madagascar",
+    "couleur": "Rouge et Vert",
+    "nomCoach": "Ratsimba Jean"
+  },
+  {
+    "idEquipe": 2,
+    "idTournoi": 1,
+    "nom": "COSFA FC",
+    "couleur": "Bleu et Blanc",
+    "nomCoach": "Randria Paul"
+  },
+  {
+    "idEquipe": 3,
+    "idTournoi": 1,
+    "nom": "AS Adema",
+    "couleur": "Rouge et Blanc",
+    "nomCoach": "Rakoto Pierre"
+  },
+  {
+    "idEquipe": 4,
+    "idTournoi": 1,
+    "nom": "FC Fosa Juniors",
+    "couleur": "Jaune et Noir",
+    "nomCoach": "Razafy Marc"
+  },
+  {
+    "idEquipe": 5,
+    "idTournoi": 1,
+    "nom": "Elgeco Plus FC",
+    "couleur": "Vert et Blanc",
+    "nomCoach": "Rasolofo Henri"
+  },
+  {
+    "idEquipe": 6,
+    "idTournoi": 1,
+    "nom": "AS Mama",
+    "couleur": "Violet et Blanc",
+    "nomCoach": "Andriantsoa Luc"
+  },
+  {
+    "idEquipe": 7,
+    "idTournoi": 1,
+    "nom": "BonGoo FC",
+    "couleur": "Orange et Noir",
+    "nomCoach": "Ravelo Eric"
+  },
+  {
+    "idEquipe": 8,
+    "idTournoi": 1,
+    "nom": "Ajesaia FC",
+    "couleur": "Bleu et Jaune",
+    "nomCoach": "Rabemanana Jules"
+  }
+]
