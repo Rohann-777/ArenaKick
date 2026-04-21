@@ -27,6 +27,7 @@ def create_app(config_name='default'):
     from .routes.matchs import matchs_bp
     from .routes.joueurs import joueurs_bp
     from .routes.notifications import notifications_bp
+    from .routes.algorithmes import algorithmes_bp
 
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(tournois_bp, url_prefix='/api/tournois')
@@ -34,5 +35,6 @@ def create_app(config_name='default'):
     app.register_blueprint(matchs_bp, url_prefix='/api/matchs')
     app.register_blueprint(joueurs_bp, url_prefix='/api/joueurs')
     app.register_blueprint(notifications_bp, url_prefix='/api/notifications')
+    app.register_blueprint(algorithmes_bp, url_prefix='/api/algorithmes')
 
     return app
