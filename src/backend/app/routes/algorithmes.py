@@ -5,6 +5,8 @@ from app.algorithms.kmp import KMPRecherche
 from app.models.classement import Classement
 from app.models.equipe import Equipe
 from app.models.tournoi import Tournoi
+from app.algorithms.graphe import GrapheTournoi
+from app.models.match import Match
 import time
 
 algorithmes_bp = Blueprint('algorithmes', __name__)
@@ -108,4 +110,91 @@ def recherche_equipe():
             'algorithme': 'KMP O(n + m)',
             'baseline': 'Recherche naive O(n x m)'
         }
+    }), 200
+
+# ============================================================
+# ROUTE : Graphe des confrontations d'un tournoi
+# GET /api/algorithmes/graphe/<idTournoi>
+# ============================================================
+@algorithmes_bp.route('/graphe/<int:idTournoi>', methods=['GET'])
+def graphe_tournoi(idTournoi):
+    tournoi = Tournoi.query.get(idTournoi)
+    if not tournoi:
+        return jsonify({'erreur': 'Tournoi introuvable'}), 404
+
+    # Construire le graphe
+    graphe = GrapheTournoi()
+
+    # Ajouter les équipes (nœuds)
+    equipes = Equipe.query.filter_by(idTournoi=idTournoi).all()
+    for equipe in equipes:
+        graphe.ajouter_equipe(equipe.idEquipe, equipe.nom)
+
+    # Ajouter les matchs (arêtes)
+    matchs = Match.query.filter_by(
+        idTournoi=idTournoi,
+        statut='termine'
+    ).all()
+    for match in matchs:
+        graphe.ajouter_match(
+            match.idEquipeA,
+            match.idEquipeB,
+            match.scoreEquipeA,
+            match.scoreEquipeB
+        )
+
+    dominant = graphe.equipe_dominante()
+
+    return jsonify({
+        'tournoi': tournoi.nom,
+        'graphe': graphe.to_dict(),
+        'equipeDominante': dominant,
+        'grapheComplet': graphe.est_complet()
+    }), 200
+
+# ============================================================
+# ROUTE : Confrontation directe entre deux équipes
+# GET /api/algorithmes/confrontation/<idA>/<idB>
+# ============================================================
+@algorithmes_bp.route(
+    '/confrontation/<int:idA>/<int:idB>',
+    methods=['GET']
+)
+def confrontation_directe(idA, idB):
+    equipeA = Equipe.query.get(idA)
+    equipeB = Equipe.query.get(idB)
+
+    if not equipeA or not equipeB:
+        return jsonify({'erreur': 'Équipe introuvable'}), 404
+
+    match = Match.query.filter(
+        ((Match.idEquipeA == idA) & (Match.idEquipeB == idB)) |
+        ((Match.idEquipeA == idB) & (Match.idEquipeB == idA)),
+        Match.statut == 'termine'
+    ).first()
+
+    if not match:
+        return jsonify({
+            'erreur': 'Aucun match joué entre ces équipes'
+        }), 404
+
+    # Construire graphe pour ce match
+    graphe = GrapheTournoi()
+    graphe.ajouter_equipe(idA, equipeA.nom)
+    graphe.ajouter_equipe(idB, equipeB.nom)
+    graphe.ajouter_match(
+        match.idEquipeA,
+        match.idEquipeB,
+        match.scoreEquipeA,
+        match.scoreEquipeB
+    )
+
+    resultat = graphe.get_resultat_direct(idA, idB)
+
+    return jsonify({
+        'equipeA': equipeA.nom,
+        'equipeB': equipeB.nom,
+        'scoreEquipeA': match.scoreEquipeA,
+        'scoreEquipeB': match.scoreEquipeB,
+        'resultat': resultat
     }), 200
