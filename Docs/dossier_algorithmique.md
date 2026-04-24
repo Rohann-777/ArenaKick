@@ -274,7 +274,7 @@ Crée `src/backend/tests/test_algorithmes.py` :
 
 | Contrainte                     | Impact architectural                   | Impact algorithmique                  |
 |--------------------------------|----------------------------------------|---------------------------------------|
-| **Coupures d'énergie**         | Sauvegarde Git régulière, SQLite local | Algorithmes légers en mémoire         |
+| **Coupures d'énergie**         | Sauvegarde Git régulière, MySQL        | Algorithmes légers en mémoire         |
 | **Faible débit**               | API REST légère, JSON compact          | KMP réduit les requêtes de recherche  |
 | **Sécurité**                   | JWT, hashage mot de passe              | Validation des entrées à chaque route |
-| **Connectivité intermittente** | Développement offline possible         | SQLite local sans serveur dédié       |
+| **Connectivité intermittente** | Développement offline possible         | MySQL via WampServer, fonctionnel en local sans internet       |
