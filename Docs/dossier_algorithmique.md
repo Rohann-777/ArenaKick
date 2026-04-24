@@ -277,4 +277,4 @@ Crée `src/backend/tests/test_algorithmes.py` :
 | **Coupures d'énergie**         | Sauvegarde Git régulière, MySQL        | Algorithmes légers en mémoire         |
 | **Faible débit**               | API REST légère, JSON compact          | KMP réduit les requêtes de recherche  |
 | **Sécurité**                   | JWT, hashage mot de passe              | Validation des entrées à chaque route |
-| **Connectivité intermittente** | Développement offline possible         | MySQL via WampServer, fonctionnel en local sans internet       |
+| **Connectivité intermittente** | Développement offline possible         | MySQL via WampServer, fonctionnel en local sans internet |
