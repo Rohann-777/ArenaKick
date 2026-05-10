@@ -188,11 +188,48 @@ def supprimer_tournoi(id):
         return jsonify({'erreur': 'Accès refusé — Administrateur requis'}), 403
 
     tournoi = Tournoi.query.get(id)
-
     if not tournoi:
         return jsonify({'erreur': 'Tournoi introuvable'}), 404
 
-    db.session.delete(tournoi)
-    db.session.commit()
+    try:
+        from app.models.classement import Classement
+        from app.models.match import Match
+        from app.models.equipe import Equipe
+        from app.models.joueur import Joueur
+        from app.models.notification import Notification
 
-    return jsonify({'message': 'Tournoi supprimé avec succès !'}), 200
+        # Supprimer dans l'ordre des dépendances
+        # 1. Notifications liées aux matchs du tournoi
+        matchs = Match.query.filter_by(idTournoi=id).all()
+        for match in matchs:
+            Notification.query.filter_by(
+                idMatch=match.idMatch
+            ).delete()
+
+        # 2. Classements
+        Classement.query.filter_by(idTournoi=id).delete()
+
+        # 3. Matchs
+        Match.query.filter_by(idTournoi=id).delete()
+
+        # 4. Joueurs des équipes du tournoi
+        equipes = Equipe.query.filter_by(idTournoi=id).all()
+        for equipe in equipes:
+            Joueur.query.filter_by(
+                idEquipe=equipe.idEquipe
+            ).delete()
+
+        # 5. Équipes
+        Equipe.query.filter_by(idTournoi=id).delete()
+
+        # 6. Tournoi
+        db.session.delete(tournoi)
+        db.session.commit()
+
+        return jsonify({
+            'message': 'Tournoi et toutes ses données supprimés !'
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'erreur': str(e)}), 500

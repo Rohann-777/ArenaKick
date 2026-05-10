@@ -18,7 +18,13 @@ def create_app(config_name='default'):
     # 3. Relier les extensions à l'application
     db.init_app(app)
     jwt.init_app(app)
-    CORS(app)
+    CORS(app, resources={
+    r"/api/*": {
+        "origins": ["http://localhost:8080", "http://127.0.0.1:8080"],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization"]
+    }
+    })
 
     # 4. Enregistrer les routes
     from .routes.auth import auth_bp

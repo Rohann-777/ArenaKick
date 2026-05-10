@@ -272,9 +272,9 @@ Crée `src/backend/tests/test_algorithmes.py` :
 
 ## Contraintes réalisme 2035 déclarées
 
-| Contrainte                     | Impact architectural                   | Impact algorithmique                  |
-|--------------------------------|----------------------------------------|---------------------------------------|
-| **Coupures d'énergie**         | Sauvegarde Git régulière, MySQL        | Algorithmes légers en mémoire         |
-| **Faible débit**               | API REST légère, JSON compact          | KMP réduit les requêtes de recherche  |
-| **Sécurité**                   | JWT, hashage mot de passe              | Validation des entrées à chaque route |
+| Contrainte                     | Impact architectural                   | Impact algorithmique                                     |
+|--------------------------------|----------------------------------------|----------------------------------------------------------|
+| **Coupures d'énergie**         | Sauvegarde Git régulière, MySQL        | Algorithmes légers en mémoire                            |
+| **Faible débit**               | API REST légère, JSON compact          | KMP réduit les requêtes de recherche                     |
+| **Sécurité**                   | JWT, hashage mot de passe              | Validation des entrées à chaque route                    |
 | **Connectivité intermittente** | Développement offline possible         | MySQL via WampServer, fonctionnel en local sans internet |

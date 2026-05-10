@@ -420,6 +420,9 @@
         <div class="tab active" onclick="changerOnglet('equipes')">
             👥 Équipes
         </div>
+        <div class="tab" onclick="changerOnglet('joueurs')">
+            👤 Joueurs
+        </div>
         <div class="tab" onclick="changerOnglet('calendrier')">
             📅 Calendrier
         </div>
@@ -447,6 +450,54 @@
                 <div class="loading">Chargement...</div>
             </div>
         </div>
+
+        <!-- ONGLET JOUEURS -->
+        <div class="tab-content" id="tab-joueurs">
+            <div class="section-header">
+                <h3>Joueurs par équipe</h3>
+        </div>
+
+    <!-- Sélecteur d'équipe -->
+    <div class="form-group" style="margin-bottom: 24px;">
+        <label>Sélectionner une équipe</label>
+        <select id="selectEquipe"
+            onchange="chargerJoueurs(this.value)"
+            style="max-width: 300px;">
+            <option value="">-- Choisir une équipe --</option>
+        </select>
+    </div>
+
+    <!-- Bouton ajouter joueur (organisateur/admin) -->
+    <div class="section-header" id="headerJoueurs"
+        style="display:none">
+        <h3 id="titreEquipeJoueurs">Joueurs</h3>
+        <button class="btn-primary" id="btnAjouterJoueur"
+            onclick="ouvrirModalJoueur()"
+            style="display:none">
+            + Ajouter un joueur
+        </button>
+    </div>
+
+    <!-- Tableau joueurs -->
+    <div class="table-container" id="tableJoueurs" style="display:none">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom & Prénom</th>
+                    <th>Poste</th>
+                    <th>Âge</th>
+                </tr>
+            </thead>
+            <tbody id="listeJoueurs"></tbody>
+        </table>
+    </div>
+
+        <div id="messageJoueurs" class="empty"
+            style="display:none">
+            Aucun joueur dans cette équipe.
+        </div>
+    </div>
 
         <!-- ONGLET CALENDRIER -->
         <div class="tab-content" id="tab-calendrier">
@@ -551,6 +602,58 @@
                         Annuler
                     </button>
                     <button type="submit" class="btn-primary" style="flex:1">
+                        Ajouter
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL AJOUTER JOUEUR -->
+    <div class="modal" id="modalJoueur">
+        <div class="modal-content">
+            <h3>👤 Ajouter un joueur</h3>
+            <form id="formJoueur">
+                <div class="form-group">
+                    <label>Nom</label>
+                    <input type="text" id="nomJoueur"
+                        placeholder="Ex: RAKOTOJAONA" required/>
+                </div>
+                <div class="form-group">
+                    <label>Prénom</label>
+                    <input type="text" id="prenomJoueur"
+                        placeholder="Ex: Rohann" required/>
+                </div>
+                <div class="form-group">
+                    <label>Âge</label>
+                    <input type="number" id="ageJoueur"
+                        min="16" max="50"
+                        placeholder="Ex: 22"/>
+                </div>
+                <div class="form-group">
+                    <label>Numéro de maillot</label>
+                    <input type="number" id="maillotJoueur"
+                        min="1" max="99"
+                        placeholder="Ex: 10"/>
+                </div>
+                <div class="form-group">
+                    <label>Poste</label>
+                    <select id="posteJoueur">
+                        <option value="">-- Choisir --</option>
+                        <option value="gardien">Gardien</option>
+                        <option value="defenseur">Défenseur</option>
+                        <option value="milieu">Milieu</option>
+                        <option value="attaquant">Attaquant</option>
+                    </select>
+                </div>
+                <div class="message" id="messageModalJoueur"></div>
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancel"
+                        onclick="fermerModalJoueur()">
+                        Annuler
+                    </button>
+                    <button type="submit" class="btn-primary"
+                        style="flex:1">
                         Ajouter
                     </button>
                 </div>
@@ -689,6 +792,156 @@
                     '<div class="empty">Erreur de chargement</div>';
             }
         }
+
+        // ============================================================
+        // Onglet Joueurs — Charger les équipes dans le select
+        // ============================================================
+        async function chargerEquipesPourJoueurs() {
+            try {
+                const response = await fetch(
+                    `${API_URL}/equipes/tournoi/${idTournoi}`
+                );
+                const equipes = await response.json();
+
+                const select = document.getElementById('selectEquipe');
+                select.innerHTML = '<option value="">-- Choisir une équipe --</option>';
+
+                equipes.forEach(e => {
+                    select.innerHTML += `
+                        <option value="${e.id}">${e.nom}</option>`;
+                });
+
+            } catch (error) {
+                console.error('Erreur chargement équipes', error);
+            }
+        }
+
+        // ============================================================
+        // Onglet Joueurs — Charger les joueurs d'une équipe
+        // ============================================================
+        async function chargerJoueurs(idEquipe) {
+            if (!idEquipe) return;
+
+            const headerJoueurs = document.getElementById('headerJoueurs');
+            const tableJoueurs = document.getElementById('tableJoueurs');
+            const messageJoueurs = document.getElementById('messageJoueurs');
+            const btnAjouterJoueur = document.getElementById('btnAjouterJoueur');
+            const titreEquipe = document.getElementById('titreEquipeJoueurs');
+
+            headerJoueurs.style.display = 'flex';
+
+            // Afficher bouton seulement si organisateur/admin
+            if (estOrganisateur) {
+                btnAjouterJoueur.style.display = 'block';
+            }
+
+            // Stocker l'équipe sélectionnée
+            window.equipeSelectionnee = idEquipe;
+
+            try {
+                const response = await fetch(
+                    `${API_URL}/joueurs/equipe/${idEquipe}`
+                );
+                const joueurs = await response.json();
+
+                // Mettre à jour le titre
+                const select = document.getElementById('selectEquipe');
+                const nomEquipe = select.options[select.selectedIndex].text;
+                titreEquipe.textContent = `Joueurs — ${nomEquipe}`;
+
+                if (joueurs.length === 0) {
+                    tableJoueurs.style.display = 'none';
+                    messageJoueurs.style.display = 'block';
+                    return;
+                }
+
+                tableJoueurs.style.display = 'block';
+                messageJoueurs.style.display = 'none';
+
+                const tbody = document.getElementById('listeJoueurs');
+                tbody.innerHTML = joueurs.map(j => `
+                    <tr>
+                        <td>
+                            <strong style="color:#e94560">
+                                #${j.numeroMaillot || '?'}
+                            </strong>
+                        </td>
+                        <td>
+                            <strong>${j.nom} ${j.prenom}</strong>
+                        </td>
+                        <td>
+                            <span class="statut-match programme">
+                                ${j.poste || 'Non défini'}
+                            </span>
+                        </td>
+                        <td>${j.age || '—'} ans</td>
+                    </tr>
+                `).join('');
+
+            } catch (error) {
+                console.error('Erreur chargement joueurs', error);
+            }
+        }
+
+        // ============================================================
+        // Modal Joueur
+        // ============================================================
+        function ouvrirModalJoueur() {
+            document.getElementById('modalJoueur').classList.add('active');
+        }
+
+        function fermerModalJoueur() {
+            document.getElementById('modalJoueur').classList.remove('active');
+            document.getElementById('formJoueur').reset();
+            document.getElementById('messageModalJoueur').className = 'message';
+        }
+
+        document.getElementById('formJoueur').addEventListener('submit',
+            async (e) => {
+            e.preventDefault();
+
+            const messageModalJoueur = document.getElementById('messageModalJoueur');
+            messageModalJoueur.className = 'message';
+
+            const data = {
+                nom: document.getElementById('nomJoueur').value,
+                prenom: document.getElementById('prenomJoueur').value,
+                age: parseInt(document.getElementById('ageJoueur').value) || null,
+                numeroMaillot: parseInt(
+                    document.getElementById('maillotJoueur').value
+                ) || null,
+                poste: document.getElementById('posteJoueur').value || null,
+                idEquipe: parseInt(window.equipeSelectionnee)
+            };
+
+            try {
+                const response = await fetch(`${API_URL}/joueurs`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    messageModalJoueur.className = 'message succes';
+                    messageModalJoueur.textContent = 'Joueur ajouté !';
+                    setTimeout(() => {
+                        fermerModalJoueur();
+                        chargerJoueurs(window.equipeSelectionnee);
+                    }, 1000);
+                } else {
+                    messageModalJoueur.className = 'message erreur';
+                    messageModalJoueur.textContent = result.erreur;
+                }
+            } catch (error) {
+                messageModalJoueur.className = 'message erreur';
+                messageModalJoueur.textContent = 'Erreur de connexion';
+            }
+        });
 
         // ============================================================
         // Onglet Calendrier — Charger
@@ -869,6 +1122,7 @@
 
             // Charger les données de l'onglet
             if (onglet === 'equipes') chargerEquipes();
+            else if (onglet === 'joueurs') chargerEquipesPourJoueurs();
             else if (onglet === 'calendrier') chargerCalendrier();
             else if (onglet === 'resultats') chargerResultats();
             else if (onglet === 'classement') chargerClassement();

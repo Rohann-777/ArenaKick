@@ -104,13 +104,16 @@ def importer_donnees():
         equipes_data = charger_json('equipes.json')
 
         equipes_map = {}
+        # Récupérer l'id réel du tournoi créé
+        tournoi_cree = Tournoi.query.first()
+
         for e in equipes_data:
             equipe = Equipe(
                 nom=e['nom'],
                 couleur=e.get('couleur'),
                 nomCoach=e.get('nomCoach'),
-                idTournoi=e['idTournoi']
-            )
+                idTournoi=tournoi_cree.idTournoi
+        )
             db.session.add(equipe)
             db.session.flush()
             equipes_map[e['idEquipe']] = equipe.idEquipe
@@ -155,7 +158,7 @@ def importer_donnees():
                 statut=m.get('statut', 'termine'),
                 idEquipeA=equipes_map[m['idEquipeA']],
                 idEquipeB=equipes_map[m['idEquipeB']],
-                idTournoi=m['idTournoi']
+                idTournoi=tournoi_cree.idTournoi
             )
             db.session.add(match)
             db.session.flush()
@@ -181,7 +184,7 @@ def importer_donnees():
                 differenceButs=c.get('differenceButs', 0),
                 rang=c.get('rang'),
                 idEquipe=equipes_map[c['idEquipe']],
-                idTournoi=c['idTournoi']
+                idTournoi=tournoi_cree.idTournoi
             )
             db.session.add(classement)
 
