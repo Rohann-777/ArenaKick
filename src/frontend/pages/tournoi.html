@@ -381,6 +381,126 @@
             color: #a8a8b3;
             padding: 40px;
         }
+        
+        /* NOTIFICATIONS */
+        .notif-container {
+            position: relative;
+        }
+
+        .notif-btn {
+            background: transparent;
+            border: 1px solid #a8a8b3;
+            color: #a8a8b3;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .notif-btn:hover {
+            border-color: #e94560;
+            color: #e94560;
+        }
+
+        .notif-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #e94560;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+
+        .notif-dropdown {
+            display: none;
+            position: absolute;
+            top: 45px;
+            right: 0;
+            width: 320px;
+            background: #16213e;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            border: 1px solid #1a2a4a;
+            z-index: 1000;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .notif-dropdown.active { display: block; }
+
+        .notif-header {
+            padding: 16px;
+            border-bottom: 1px solid #1a2a4a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notif-header h4 {
+            font-size: 14px;
+            color: #ffffff;
+        }
+
+        .notif-tout-lire {
+            font-size: 12px;
+            color: #e94560;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .notif-item {
+            padding: 14px 16px;
+            border-bottom: 1px solid #1a2a4a;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .notif-item:hover { background: #1a2a4a; }
+
+        .notif-item.non-lue {
+            border-left: 3px solid #e94560;
+        }
+
+        .notif-item.lue {
+            border-left: 3px solid transparent;
+            opacity: 0.7;
+        }
+
+        .notif-type {
+            font-size: 11px;
+            color: #a8a8b3;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .notif-contenu {
+            font-size: 13px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .notif-date {
+            font-size: 11px;
+            color: #a8a8b3;
+            margin-top: 4px;
+        }
+
+        .notif-vide {
+            padding: 24px;
+            text-align: center;
+            color: #a8a8b3;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -389,6 +509,27 @@
     <nav class="navbar">
         <h1 onclick="window.location.href='dashboard.html'">⚽ ArenaKick</h1>
         <div class="navbar-right">
+            <!-- Notifications (si connecté) -->
+            <div class="notif-container" id="notifContainer"
+                style="display:none">
+                <button class="notif-btn" onclick="toggleNotifications()">
+                    🔔
+                    <span class="notif-badge" id="notifBadge"
+                        style="display:none">0</span>
+                </button>
+                <div class="notif-dropdown" id="notifDropdown">
+                    <div class="notif-header">
+                        <h4>Notifications</h4>
+                        <button class="notif-tout-lire"
+                            onclick="toutMarquerLu()">
+                            Tout marquer lu
+                        </button>
+                    </div>
+                    <div id="listeNotifications">
+                        <div class="notif-vide">Chargement...</div>
+                    </div>
+                </div>
+            </div>
             <button class="btn-back" id="btnRetour">
                 ← Retour
             </button>
@@ -1247,10 +1388,121 @@
         }
 
         // ============================================================
+        // Notifications
+        // ============================================================
+        async function chargerNotifications() {
+            if (!token) return;
+
+            try {
+                // Compter les non lues
+                const responseCount = await fetch(
+                    `${API_URL}/notifications/non-lues`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                );
+                const countData = await responseCount.json();
+                const nonLues = countData.nonLues || 0;
+
+                // Mettre à jour le badge
+                const badge = document.getElementById('notifBadge');
+                if (nonLues > 0) {
+                    badge.style.display = 'flex';
+                    badge.textContent = nonLues > 9 ? '9+' : nonLues;
+                } else {
+                    badge.style.display = 'none';
+                }
+
+                // Charger la liste
+                const response = await fetch(
+                    `${API_URL}/notifications/mes-notifications`,
+                    { headers: { 'Authorization': `Bearer ${token}` } }
+                );
+                const notifications = await response.json();
+
+                const liste = document.getElementById('listeNotifications');
+
+                if (notifications.length === 0) {
+                    liste.innerHTML = `
+                        <div class="notif-vide">
+                            Aucune notification
+                        </div>`;
+                    return;
+                }
+
+                liste.innerHTML = notifications.map(n => `
+                    <div class="notif-item ${n.lu ? 'lue' : 'non-lue'}"
+                        onclick="marquerLue(${n.id})">
+                        <div class="notif-type">
+                            ${n.type === 'rappel_match' ? '📅 Rappel match' :
+                            n.type === 'resultat' ? '⚽ Résultat' : 'ℹ️ Info'}
+                        </div>
+                        <div class="notif-contenu">${n.contenu}</div>
+                        <div class="notif-date">
+                            ${new Date(n.dateEnvoi).toLocaleDateString('fr-FR')}
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (error) {
+                console.error('Erreur notifications', error);
+            }
+        }
+
+        function toggleNotifications() {
+            const dropdown = document.getElementById('notifDropdown');
+            dropdown.classList.toggle('active');
+            if (dropdown.classList.contains('active')) {
+                chargerNotifications();
+            }
+        }
+
+        async function marquerLue(idNotif) {
+            try {
+                await fetch(`${API_URL}/notifications/${idNotif}/lire`, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                chargerNotifications();
+            } catch (error) {
+                console.error('Erreur marquer lue', error);
+            }
+        }
+
+        async function toutMarquerLu() {
+            try {
+                await fetch(`${API_URL}/notifications/tout-lire`, {
+                    method: 'PUT',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                chargerNotifications();
+                document.getElementById('notifDropdown')
+                    .classList.remove('active');
+            } catch (error) {
+                console.error('Erreur tout marquer lu', error);
+            }
+        }
+
+        // Fermer dropdown en cliquant ailleurs
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('notifContainer');
+            if (container && !container.contains(e.target)) {
+                document.getElementById('notifDropdown')
+                    .classList.remove('active');
+            }
+        });
+
+        // ============================================================
         // Initialisation
         // ============================================================
         chargerTournoi();
         chargerEquipes();
+
+        // Afficher et charger les notifications si connecté
+        if (token) {
+            document.getElementById('notifContainer').style.display = 'block';
+            chargerNotifications();
+            // Rafraîchir toutes les 30 secondes
+            setInterval(chargerNotifications, 30000);
+        }
     </script>
 </body>
 </html>

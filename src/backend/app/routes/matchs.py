@@ -249,6 +249,22 @@ def saisir_resultat(id):
 
     db.session.commit()
 
+    # Vérifier si tous les matchs du tournoi sont terminés
+    total_matchs = Match.query.filter_by(
+        idTournoi=match.idTournoi
+    ).count()
+
+    matchs_termines = Match.query.filter_by(
+        idTournoi=match.idTournoi,
+        statut='termine'
+    ).count()
+
+    # Si tous les matchs sont terminés → tournoi terminé
+    if total_matchs == matchs_termines:
+        tournoi_actuel = Tournoi.query.get(match.idTournoi)
+        tournoi_actuel.statut = 'termine'
+        db.session.commit()
+
     return jsonify({
         'message': 'Résultat enregistré avec succès !',
         'match': {

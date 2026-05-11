@@ -141,7 +141,7 @@ if __name__ == "__main__":
         "dateFin": "2035-07-01",
         "format": "poules",
         "nombreEquipes": 8,
-        "statut": "en_cours"
+        "statut": "termine"
     }
 
     # Équipes

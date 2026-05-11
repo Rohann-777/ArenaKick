@@ -31,13 +31,22 @@ def importer_donnees():
 
     with app.app_context():
         print("Suppression des anciennes donnees...")
-        Classement.query.delete()
-        Match.query.delete()
-        Joueur.query.delete()
-        Equipe.query.delete()
-        Tournoi.query.delete()
-        Utilisateur.query.delete()
+        from app.models.notification import Notification
+        from sqlalchemy import text
+
+        # TRUNCATE remet les auto_increment à 1
+        # Désactiver les contraintes FK temporairement
+        db.session.execute(text('SET FOREIGN_KEY_CHECKS = 0'))
+        db.session.execute(text('TRUNCATE TABLE notification'))
+        db.session.execute(text('TRUNCATE TABLE classement'))
+        db.session.execute(text('TRUNCATE TABLE `match`'))
+        db.session.execute(text('TRUNCATE TABLE joueur'))
+        db.session.execute(text('TRUNCATE TABLE equipe'))
+        db.session.execute(text('TRUNCATE TABLE tournoi'))
+        db.session.execute(text('TRUNCATE TABLE utilisateur'))
+        db.session.execute(text('SET FOREIGN_KEY_CHECKS = 1'))
         db.session.commit()
+        print("  Tables vidées et auto_increment remis à 1")
 
         # ============================================================
         # 1. Créer les utilisateurs par défaut
